@@ -25,23 +25,29 @@
   .header {
     display: flex;
     align-items: center;
-    border: 1px solid #007BFF;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    background-color: aliceblue;
+    background-color: hsl(78, 71%, 64%);
+    padding: 15px;
+    border-radius: 8px 8px 0 0;
   }
 
   .header img {
-    height: 60px;
+    height: 50px;
     margin-right: 15px;
   }
-  .header p {
-    color: #615f5f;
+  .header-text p {
+    margin: 5px 0 0;
+    color: #6b7077;
+    font-size: 14px;
+    line-height: 1.4;
   }
-
+  .header-text {
+  flex: 1;
+  text-align: center;
+  }
   .header h1 {
     margin: 0;
-    color: #007BFF;
+    color: #252627;
+    font-size: 28px;
   }
 
   label {
@@ -62,12 +68,12 @@
   }
 
   input:focus, select:focus, textarea:focus {
-    border-color: #007BFF;
+    border-color: #a3ed99;
     outline: none;
-    box-shadow: 0 0 5px rgba(0,123,255,0.3);
+    box-shadow: 0 0 5px rgba(87, 139, 115, 0.3);
   }
 
-  .radio-group {
+  /* .radio-group {
     margin-bottom: 15px;
   }
 
@@ -79,9 +85,27 @@
     font-weight: normal;
     display: inline;
   }
+  */
+  .radio-group {
+  display: flex;             /* flex container for horizontal layout */
+  justify-content: space-between; /* even spacing across the row */
+  margin-bottom: 15px;
+  flex-wrap: wrap;           /* wrap to next line if the screen is too narrow */
+  }
+
+  .radio-group label {
+    display: flex;             /* align radio button and text horizontally */
+    align-items: center;       /* vertical alignment */
+    font-weight: normal;
+    cursor: pointer;
+  }
+
+  .radio-group input[type="radio"] {
+    margin-right: 5px;         /* space between radio button and text */
+  }
 
   button {
-    background-color: #007BFF;
+    background-color: #a3ed99;
     color: white;
     padding: 12px;
     border: none;
@@ -92,14 +116,27 @@
   }
 
   button:hover {
-    background-color: #0056b3;
+    background-color: #a3ed99;
   }
+  .question {
+  margin-bottom: 20px;
+}
 
+.question label {
+  display: flex;        /* Use flex to align radio and text */
+  align-items: center;  /* Vertically center the text with the radio */
+  margin-bottom: 5px;   /* Spacing between options */
+  cursor: pointer;      /* Makes clicking the text select the radio */
+}
+
+.question input[type="radio"] {
+  margin-right: 10px;   /* Space between radio button and text */
+}
   #result {
     margin-top: 20px;
     padding: 15px;
     background: #e9f5ff;
-    border-left: 5px solid #007BFF;
+    border-left: 5px solid #a3ed99;
     font-weight: bold;
   }
 
@@ -120,12 +157,20 @@
 
 <!-- Header with logo -->
 <div class="header">
-  <!-- <img src="logo.png" alt="Company Logo"> -->
+  <img src="logo.png" alt="Company Logo">
+  <div class="header-text">
   <h1>Customer Service Survey Form</h1>
   <p>Please take a moment to give us your feedback about your recent experience with our services.</p>
+  </div>
 </div>
 
 <form>
+
+  <label for="customerName">Customer Name:</label>
+<input type="text" id="customerName" name="customerName" required>
+
+<label for="agentName">Service Representative:</label>
+<input type="text" id="agentName" name="agentName" required>
 
   <!-- Date of Service -->
   <label for="serviceDate">Date of Service:</label>
@@ -144,25 +189,25 @@
   <!-- Q2 -->
   <label>2. How easy was it to arrange your service?</label>
   <div class="radio-group">
-    <input type="radio" name="ease" value=5 required> Very Easy<br>
-    <input type="radio" name="ease" value=4> Easy<br>
-    <input type="radio" name="ease" value=3> Neutral<br>
-    <input type="radio" name="ease" value=2> Difficult<br>
-    <input type="radio" name="ease" value=1> Very Difficult
+    <label><input type="radio" name="ease" value=5 required> Very Easy</label>
+    <label><input type="radio" name="ease" value=4> Easy</label>
+    <label><input type="radio" name="ease" value=3> Neutral</label>
+    <label><input type="radio" name="ease" value=2> Difficult</label>
+    <label><input type="radio" name="ease" value=1> Very Difficult</label>
   </div>
 
   <!-- Q3 -->
   <label>3. Was the appointment scheduled at a convenient time?</label>
   <div class="radio-group">
-    <input type="radio" name="convenient" value=5 required> Yes<br>
-    <input type="radio" name="convenient" value=1> No
+    <label><input type="radio" name="convenient" value=5 required> Yes</label>
+    <label><input type="radio" name="convenient" value=1> No</label>
   </div>
 
   <!-- Q4 -->
   <label>4. Did the technical courier arrive on time?</label>
   <div class="radio-group">
-    <input type="radio" name="onTime" value=5 required> Yes<br>
-    <input type="radio" name="onTime" value=1> No
+    <label><input type="radio" name="onTime" value=5 required> Yes</label>
+    <label><input type="radio" name="onTime" value=1> No</label>
   </div>
 
   <!-- Q5 -->
@@ -177,36 +222,36 @@
   <!-- Q6 -->
   <label>6. How would you rate the professionalism of the courier?</label>
   <div class="radio-group">
-    <input type="radio" name="professionalism" value=5 required> Excellent<br>
-    <input type="radio" name="professionalism" value=4> Good<br>
-    <input type="radio" name="professionalism" value=3> Average<br>
-    <input type="radio" name="professionalism" value=2> Poor<br>
-    <input type="radio" name="professionalism" value=1> Very Poor
+    <label><input type="radio" name="professionalism" value=5 required> Excellent</label>
+    <label><input type="radio" name="professionalism" value=4> Good</label>
+    <label><input type="radio" name="professionalism" value=3> Average</label>
+    <label><input type="radio" name="professionalism" value=2> Poor</label>
+    <label><input type="radio" name="professionalism" value=1> Very Poor</label>
   </div>
 
   <!-- Q7 -->
   <label>7. Was the installation completed successfully?</label>
   <div class="radio-group">
-    <input type="radio" name="installation" value=5 required> Yes<br>
-    <input type="radio" name="installation" value=1> No<br>
-    <input type="radio" name="installation" value=3> Partially
+    <label><input type="radio" name="installation" value=5 required> Yes</label>
+    <label><input type="radio" name="installation" value=1> No</label>
+    <label><input type="radio" name="installation" value=3> Partially</label>
   </div>
 
   <!-- Q8 -->
   <label>8. How clearly did the courier explain the installation?</label>
   <div class="radio-group">
-    <input type="radio" name="clarity" value=5 required> Very Clearly<br>
-    <input type="radio" name="clarity" value=4> Clearly<br>
-    <input type="radio" name="clarity" value=3> Neutral<br>
-    <input type="radio" name="clarity" value=2> Unclear<br>
-    <input type="radio" name="clarity" value=1> Very Unclear
+    <label><input type="radio" name="clarity" value=5 required> Very Clearly</label>
+    <label><input type="radio" name="clarity" value=4> Clearly</label>
+    <label><input type="radio" name="clarity" value=3> Neutral</label>
+    <label><input type="radio" name="clarity" value=2> Unclear</label>
+    <label><input type="radio" name="clarity" value=1> Very Unclear</label>
   </div>
 
   <!-- Q9 -->
   <label>9. Did you experience any issues after installation?</label>
   <div class="radio-group">
-    <input type="radio" name="issues" value=5 required> Yes<br>
-    <input type="radio" name="issues" value=1> No
+    <label><input type="radio" name="issues" value=5 required> Yes</label>
+    <label><input type="radio" name="issues" value=1> No</label>
   </div>
   <label>If yes, please describe:</label>
   <textarea name="issuesDescription"></textarea>
@@ -214,15 +259,16 @@
   <!-- Q10 -->
   <label>10. Overall, how satisfied are you with the service?</label>
   <div class="radio-group">
-    <input type="radio" name="overall" value=5 required> Very Satisfied<br>
-    <input type="radio" name="overall" value=4> Satisfied<br>
-    <input type="radio" name="overall" value=3> Neutral<br>
-    <input type="radio" name="overall" value=2> Dissatisfied<br>
-    <input type="radio" name="overall" value=1> Very Dissatisfied
+    <label><input type="radio" name="overall" value=5 required> Very Satisfied</label>
+    <label><input type="radio" name="overall" value=4> Satisfied</label>
+    <label><input type="radio" name="overall" value=3> Neutral</label>
+    <label><input type="radio" name="overall" value=2> Dissatisfied</label>
+    <label><input type="radio" name="overall" value=1> Very Dissatisfied</label>
   </div>
   <div id="result" style="margin-top:20px; font-weight:bold;"></div>
 
-  <input type="submit" onclick="calculateScore()" value="Submit">
+  <button type="button" onclick="calculateScore()">Submit</button>
+  <button type="button" id="downloadBtn" style="margin-top:10px; display:none;">Download Result as CSV</button>
 
 </form>
 </div>
@@ -230,6 +276,16 @@
 function calculateScore() {
   let total = 0;
   let count = 0;
+   //Get names
+  let customerName = document.getElementById("customerName").value;
+  let agentName = document.getElementById("agentName").value;
+
+  if (!customerName || !agentName) {
+    alert("Please enter both Customer Name and Service Representative.");
+    return;
+  }
+
+ 
 
   // Function to get selected value
   function getValue(name) {
@@ -254,11 +310,42 @@ function calculateScore() {
   });
 
   let average = count > 0 ? (total / count).toFixed(2) : 0;
+   //Determine rating label
+  let rating = "";
+  if (average >= 4.5) rating = "Excellent";
+  else if (average >= 3.5) rating = "Good";
+  else if (average >= 2.5) rating = "Average";
+  else if (average >= 1.5) rating = "Poor";
+  else rating = "Very Poor";
+  let resultDiv = document.getElementById("result");
+
+  resultDiv.innerHTML =
+    "<strong>Customer:</strong> " + customerName + "<br>" +
+    "<strong>Service Representative:</strong> " + agentName + "<br><br>" +
+    customerName + "'s average rating for the service is: <strong>" + average + "</strong> (" + rating + ")<br>" +
+    "Total Score: " + total;
 
   // Display result
-  document.getElementById("result").innerHTML =
-    "Total Score: " + total + "<br>Average Score: " + average;
-}
+resultDiv.style.display = "block";
+
+// Prepare CSV content
+  let csvContent = "data:text/csv;charset=utf-8,";
+  csvContent += "Customer,Agent,Total,Average,Rating\n";
+  csvContent += `${customerName},${agentName},${total},${average},${rating}\n`;
+
+  // Enable download button
+  let downloadBtn = document.getElementById("downloadBtn");
+  downloadBtn.style.display = "inline-block";
+  downloadBtn.onclick = function() {
+    let encodedUri = encodeURI(csvContent);
+    let link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "survey_result.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+ }
 </script>
 </body>
 </html>
