@@ -6,68 +6,123 @@
 <style>
   body {
     font-family: Arial, sans-serif;
-    margin: 20mm;
-    max-width: 800px;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
   }
 
-  /* Header styling */
+  .container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 800px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+
   .header {
     display: flex;
     align-items: center;
-    border-bottom: 2px solid #000;
+    border: 1px solid #007BFF;
     padding-bottom: 10px;
     margin-bottom: 20px;
+    background-color: aliceblue;
   }
+
   .header img {
     height: 60px;
     margin-right: 15px;
   }
+  .header p {
+    color: #615f5f;
+  }
+
   .header h1 {
     margin: 0;
-    font-size: 22px;
+    color: #007BFF;
   }
 
   label {
     font-weight: bold;
-    display: block;
     margin-top: 15px;
+    display: block;
   }
+
   input, select, textarea {
-    margin-top: 5px;
-    margin-bottom: 15px;
     width: 100%;
-    max-width: 500px;
-    padding: 5px;
-  }
-  .radio-group {
+    max-width: 100%;
+    padding: 8px;
     margin-top: 5px;
     margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
   }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0,123,255,0.3);
+  }
+
+  .radio-group {
+    margin-bottom: 15px;
+  }
+
   .radio-group input {
-    width: auto;
-    margin-right: 5px;
+    margin-right: 8px;
   }
-  textarea {
-    height: 60px;
+
+  .radio-group label {
+    font-weight: normal;
+    display: inline;
   }
+
+  button {
+    background-color: #007BFF;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  #result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #e9f5ff;
+    border-left: 5px solid #007BFF;
+    font-weight: bold;
+  }
+
   @media print {
     body {
-      width: 210mm;
-      height: 297mm;
-      margin: 20mm;
+      background: white;
     }
-    input, select, textarea {
-      width: 100%;
+    .container {
+      box-shadow: none;
+      border: 1px solid #000;
     }
   }
 </style>
 </head>
 <body>
+<div class="container">
+
 
 <!-- Header with logo -->
 <div class="header">
-  <img src="logo.png" alt="Company Logo">
+  <!-- <img src="logo.png" alt="Company Logo"> -->
   <h1>Customer Service Survey Form</h1>
+  <p>Please take a moment to give us your feedback about your recent experience with our services.</p>
 </div>
 
 <form>
@@ -170,6 +225,7 @@
   <input type="submit" onclick="calculateScore()" value="Submit">
 
 </form>
+</div>
 <script>
 function calculateScore() {
   let total = 0;
