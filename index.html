@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Customer Service Survey Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20mm;
+    max-width: 800px;
+  }
+
+  /* Header styling */
+  .header {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  .header img {
+    height: 60px;
+    margin-right: 15px;
+  }
+  .header h1 {
+    margin: 0;
+    font-size: 22px;
+  }
+
+  label {
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+  }
+  input, select, textarea {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 500px;
+    padding: 5px;
+  }
+  .radio-group {
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+  .radio-group input {
+    width: auto;
+    margin-right: 5px;
+  }
+  textarea {
+    height: 60px;
+  }
+  @media print {
+    body {
+      width: 210mm;
+      height: 297mm;
+      margin: 20mm;
+    }
+    input, select, textarea {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header with logo -->
+<div class="header">
+  <img src="logo.png" alt="Company Logo">
+  <h1>Customer Service Survey Form</h1>
+</div>
+
+<form>
+
+  <!-- Date of Service -->
+  <label for="serviceDate">Date of Service:</label>
+  <input type="date" id="serviceDate" name="serviceDate" required>
+
+  <!-- Q1 -->
+  <label for="requestMethod">1. How did you request the service?</label>
+  <select id="requestMethod" name="requestMethod" required>
+    <option value="">--Select--</option>
+    <option value="phone">Phone</option>
+    <option value="email">Email</option>
+    <option value="website">Website</option>
+    <option value="other">Other</option>
+  </select>
+
+  <!-- Q2 -->
+  <label>2. How easy was it to arrange your service?</label>
+  <div class="radio-group">
+    <input type="radio" name="ease" value="veryEasy" required> Very Easy<br>
+    <input type="radio" name="ease" value="easy"> Easy<br>
+    <input type="radio" name="ease" value="neutral"> Neutral<br>
+    <input type="radio" name="ease" value="difficult"> Difficult<br>
+    <input type="radio" name="ease" value="veryDifficult"> Very Difficult
+  </div>
+
+  <!-- Q3 -->
+  <label>3. Was the appointment scheduled at a convenient time?</label>
+  <div class="radio-group">
+    <input type="radio" name="convenient" value="yes" required> Yes<br>
+    <input type="radio" name="convenient" value="no"> No
+  </div>
+
+  <!-- Q4 -->
+  <label>4. Did the technical courier arrive on time?</label>
+  <div class="radio-group">
+    <input type="radio" name="onTime" value="yes" required> Yes<br>
+    <input type="radio" name="onTime" value="no"> No
+  </div>
+
+  <!-- Q5 -->
+  <label>5. If late, how long was the delay?</label>
+  <select name="delayTime">
+    <option value="">--Select--</option>
+    <option value="0-15">0–15 mins</option>
+    <option value="15-30">15–30 mins</option>
+    <option value="30+">30+ mins</option>
+  </select>
+
+  <!-- Q6 -->
+  <label>6. How would you rate the professionalism of the courier?</label>
+  <div class="radio-group">
+    <input type="radio" name="professionalism" value="excellent" required> Excellent<br>
+    <input type="radio" name="professionalism" value="good"> Good<br>
+    <input type="radio" name="professionalism" value="average"> Average<br>
+    <input type="radio" name="professionalism" value="poor"> Poor<br>
+    <input type="radio" name="professionalism" value="veryPoor"> Very Poor
+  </div>
+
+  <!-- Q7 -->
+  <label>7. Was the installation completed successfully?</label>
+  <div class="radio-group">
+    <input type="radio" name="installation" value="yes" required> Yes<br>
+    <input type="radio" name="installation" value="no"> No<br>
+    <input type="radio" name="installation" value="partially"> Partially
+  </div>
+
+  <!-- Q8 -->
+  <label>8. How clearly did the courier explain the installation?</label>
+  <div class="radio-group">
+    <input type="radio" name="clarity" value="veryClearly" required> Very Clearly<br>
+    <input type="radio" name="clarity" value="clearly"> Clearly<br>
+    <input type="radio" name="clarity" value="neutral"> Neutral<br>
+    <input type="radio" name="clarity" value="unclear"> Unclear<br>
+    <input type="radio" name="clarity" value="veryUnclear"> Very Unclear
+  </div>
+
+  <!-- Q9 -->
+  <label>9. Did you experience any issues after installation?</label>
+  <div class="radio-group">
+    <input type="radio" name="issues" value="yes" required> Yes<br>
+    <input type="radio" name="issues" value="no"> No
+  </div>
+  <label>If yes, please describe:</label>
+  <textarea name="issuesDescription"></textarea>
+
+  <!-- Q10 -->
+  <label>10. Overall, how satisfied are you with the service?</label>
+  <div class="radio-group">
+    <input type="radio" name="overall" value="verySatisfied" required> Very Satisfied<br>
+    <input type="radio" name="overall" value="satisfied"> Satisfied<br>
+    <input type="radio" name="overall" value="neutral"> Neutral<br>
+    <input type="radio" name="overall" value="dissatisfied"> Dissatisfied<br>
+    <input type="radio" name="overall" value="veryDissatisfied"> Very Dissatisfied
+  </div>
+
+  <input type="submit" value="Submit">
+
+</form>
+</body>
+</html>
