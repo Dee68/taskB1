@@ -89,25 +89,25 @@
   <!-- Q2 -->
   <label>2. How easy was it to arrange your service?</label>
   <div class="radio-group">
-    <input type="radio" name="ease" value="veryEasy" required> Very Easy<br>
-    <input type="radio" name="ease" value="easy"> Easy<br>
-    <input type="radio" name="ease" value="neutral"> Neutral<br>
-    <input type="radio" name="ease" value="difficult"> Difficult<br>
-    <input type="radio" name="ease" value="veryDifficult"> Very Difficult
+    <input type="radio" name="ease" value=5 required> Very Easy<br>
+    <input type="radio" name="ease" value=4> Easy<br>
+    <input type="radio" name="ease" value=3> Neutral<br>
+    <input type="radio" name="ease" value=2> Difficult<br>
+    <input type="radio" name="ease" value=1> Very Difficult
   </div>
 
   <!-- Q3 -->
   <label>3. Was the appointment scheduled at a convenient time?</label>
   <div class="radio-group">
-    <input type="radio" name="convenient" value="yes" required> Yes<br>
-    <input type="radio" name="convenient" value="no"> No
+    <input type="radio" name="convenient" value=5 required> Yes<br>
+    <input type="radio" name="convenient" value=1> No
   </div>
 
   <!-- Q4 -->
   <label>4. Did the technical courier arrive on time?</label>
   <div class="radio-group">
-    <input type="radio" name="onTime" value="yes" required> Yes<br>
-    <input type="radio" name="onTime" value="no"> No
+    <input type="radio" name="onTime" value=5 required> Yes<br>
+    <input type="radio" name="onTime" value=1> No
   </div>
 
   <!-- Q5 -->
@@ -122,36 +122,36 @@
   <!-- Q6 -->
   <label>6. How would you rate the professionalism of the courier?</label>
   <div class="radio-group">
-    <input type="radio" name="professionalism" value="excellent" required> Excellent<br>
-    <input type="radio" name="professionalism" value="good"> Good<br>
-    <input type="radio" name="professionalism" value="average"> Average<br>
-    <input type="radio" name="professionalism" value="poor"> Poor<br>
-    <input type="radio" name="professionalism" value="veryPoor"> Very Poor
+    <input type="radio" name="professionalism" value=5 required> Excellent<br>
+    <input type="radio" name="professionalism" value=4> Good<br>
+    <input type="radio" name="professionalism" value=3> Average<br>
+    <input type="radio" name="professionalism" value=2> Poor<br>
+    <input type="radio" name="professionalism" value=1> Very Poor
   </div>
 
   <!-- Q7 -->
   <label>7. Was the installation completed successfully?</label>
   <div class="radio-group">
-    <input type="radio" name="installation" value="yes" required> Yes<br>
-    <input type="radio" name="installation" value="no"> No<br>
-    <input type="radio" name="installation" value="partially"> Partially
+    <input type="radio" name="installation" value=5 required> Yes<br>
+    <input type="radio" name="installation" value=1> No<br>
+    <input type="radio" name="installation" value=3> Partially
   </div>
 
   <!-- Q8 -->
   <label>8. How clearly did the courier explain the installation?</label>
   <div class="radio-group">
-    <input type="radio" name="clarity" value="veryClearly" required> Very Clearly<br>
-    <input type="radio" name="clarity" value="clearly"> Clearly<br>
-    <input type="radio" name="clarity" value="neutral"> Neutral<br>
-    <input type="radio" name="clarity" value="unclear"> Unclear<br>
-    <input type="radio" name="clarity" value="veryUnclear"> Very Unclear
+    <input type="radio" name="clarity" value=5 required> Very Clearly<br>
+    <input type="radio" name="clarity" value=4> Clearly<br>
+    <input type="radio" name="clarity" value=3> Neutral<br>
+    <input type="radio" name="clarity" value=2> Unclear<br>
+    <input type="radio" name="clarity" value=1> Very Unclear
   </div>
 
   <!-- Q9 -->
   <label>9. Did you experience any issues after installation?</label>
   <div class="radio-group">
-    <input type="radio" name="issues" value="yes" required> Yes<br>
-    <input type="radio" name="issues" value="no"> No
+    <input type="radio" name="issues" value=5 required> Yes<br>
+    <input type="radio" name="issues" value=1> No
   </div>
   <label>If yes, please describe:</label>
   <textarea name="issuesDescription"></textarea>
@@ -159,15 +159,50 @@
   <!-- Q10 -->
   <label>10. Overall, how satisfied are you with the service?</label>
   <div class="radio-group">
-    <input type="radio" name="overall" value="verySatisfied" required> Very Satisfied<br>
-    <input type="radio" name="overall" value="satisfied"> Satisfied<br>
-    <input type="radio" name="overall" value="neutral"> Neutral<br>
-    <input type="radio" name="overall" value="dissatisfied"> Dissatisfied<br>
-    <input type="radio" name="overall" value="veryDissatisfied"> Very Dissatisfied
+    <input type="radio" name="overall" value=5 required> Very Satisfied<br>
+    <input type="radio" name="overall" value=4> Satisfied<br>
+    <input type="radio" name="overall" value=3> Neutral<br>
+    <input type="radio" name="overall" value=2> Dissatisfied<br>
+    <input type="radio" name="overall" value=1> Very Dissatisfied
   </div>
+  <div id="result" style="margin-top:20px; font-weight:bold;"></div>
 
-  <input type="submit" value="Submit">
+  <input type="submit" onclick="calculateScore()" value="Submit">
 
 </form>
+<script>
+function calculateScore() {
+  let total = 0;
+  let count = 0;
+
+  // Function to get selected value
+  function getValue(name) {
+    let options = document.getElementsByName(name);
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].checked) {
+        return parseInt(options[i].value);
+      }
+    }
+    return null;
+  }
+
+  // Questions to score
+  let questions = ["ease", "convenient", "onTime", "professionalism", "installation", "clarity", "issues", "overall"];
+
+  questions.forEach(q => {
+    let val = getValue(q);
+    if (val !== null) {
+      total += val;
+      count++;
+    }
+  });
+
+  let average = count > 0 ? (total / count).toFixed(2) : 0;
+
+  // Display result
+  document.getElementById("result").innerHTML =
+    "Total Score: " + total + "<br>Average Score: " + average;
+}
+</script>
 </body>
 </html>
